@@ -27,7 +27,6 @@
       !initialize local variables
       integer m,n,sub_id,cell_row,cell_col,cell_lay,hru_id,nhru_irrigate
       
-      
       !write task to screen
       print *, 'Reading MODFLOW Cells that provide Irrigation Water...'
 
