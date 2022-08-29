@@ -423,5 +423,5 @@
  6200 format (i5,15f8.2,1x,4f8.2)
  !6201 format (i5,9f8.2,3f12.2,40f8.2)
  !6201 format (i5,9f8.2,3(1x,f12.2,1x),50f8.2)
- 6201 format (i5,10f8.2,1pe12.5,1x,1pe10.3,2f8.2,2f10.2,36f8.2)
+ 6201 format (i5,3f8.2,2(1pe12.5),5f8.2,1pe12.5,1x,3(1pe10.3),38f10.2) !spark | modified scientific notation
       end

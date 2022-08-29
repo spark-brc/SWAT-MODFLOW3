@@ -59,7 +59,7 @@
           !MODFLOW GW/SW
           write(30026,*), 'month:',smrt_month_counter,'year:',iyr
           write(30026,*) 'Layer, Row, Column, Rate'
-          do i=1,MXRIVR !sp - added Layer, row, column info
+          do i=1,MXRIVR !spark - added Layer, row, column info
             !determine if the River cell is linked with a SWAT sub-basin
             IR = RIVR(2,i) !row of MODFLOW river cell
             IC = RIVR(3,i) !column of MODFLOW river cell
@@ -73,7 +73,7 @@
                 write(30026,*) IL, IR, IC, smrt_GWSW_MF_avg_mo(i)
               end if
             end do
-          enddo !sp
+          enddo !spark
           write(30026,*)
 
           !SWAT GW/SW
@@ -149,7 +149,7 @@
             !MODFLOW GW/SW
             write(30027,*), 'year:',iyr
             write(30027,*) 'Layer, Row, Column, Rate'
-            do i=1,MXRIVR !sp - added Layer, row, column info
+            do i=1,MXRIVR !spark - added Layer, row, column info
               !determine if the River cell is linked with a SWAT sub-basin
               IR = RIVR(2,i) !row of MODFLOW river cell
               IC = RIVR(3,i) !column of MODFLOW river cell
@@ -232,6 +232,6 @@
       endif
 
   100 format(1000(f12.4))
-  101 format(1000(1pe13.5)) !sp modified format for high altitude
+  101 format(1000(1pe13.5)) !spark modified format for high altitude
 
       end subroutine smrt_mf_run
