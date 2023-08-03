@@ -590,18 +590,29 @@
               endif
             endif
             cell_area = DELR(j) * DELC(i)
-            if(LAYTYPUPW(k).eq.0) then !confined aquifer
-              spec_storage = mf_SC1(j,i,k) / cell_area
-              storativity = spec_storage * thickness
-              cell_gw_volume = thickness * cell_area * storativity
-            else !unconfined aquifer
-              if(IUNIT(23).gt.0 .or. IUNIT(1).gt.0) then
-                sy = mf_SC2(j,i,k) / cell_area !specific yield from cell storage capacity
-              else
-                sy = SC2UPW(j,i,k) / cell_area !specific yield from cell storage capacity
-              endif
-              cell_gw_volume = thickness * cell_area * sy
+            
+            
+            !if(LAYTYPUPW(k).eq.0) then !confined aquifer
+            !  spec_storage = mf_SC1(j,i,k) / cell_area
+            !  storativity = spec_storage * thickness
+            !  cell_gw_volume = thickness * cell_area * storativity
+            !else !unconfined aquifer
+            !  if(IUNIT(23).gt.0 .or. IUNIT(1).gt.0) then
+            !    sy = mf_SC2(j,i,k) / cell_area !specific yield from cell storage capacity
+            !  else
+            !    sy = SC2UPW(j,i,k) / cell_area !specific yield from cell storage capacity
+            !  endif
+            !  cell_gw_volume = thickness * cell_area * sy
+            !endif
+            
+            if(IUNIT(23).gt.0 .or. IUNIT(1).gt.0) then
+              sy = mf_SC2(j,i,k) / cell_area !specific yield from cell storage capacity
+            else
+              sy = SC2UPW(j,i,k) / cell_area !specific yield from cell storage capacity
             endif
+            cell_gw_volume = thickness * cell_area * sy            
+            
+            
             gw_available(j,i,k) = cell_gw_volume !save for SWAT auto-irrigation (see irrigate.f)
             aquifer_gw_volume = aquifer_gw_volume + cell_gw_volume
             endif
