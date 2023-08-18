@@ -591,7 +591,7 @@
             endif
             cell_area = DELR(j) * DELC(i)
             
-            ! forrtl: severe (157): Program Exception - access violation !spark commented out
+            ! forrtl: severe (157): Program Exception - access violation !spark commented out ---------
             !if(LAYTYPUPW(k).eq.0) then !confined aquifer
             !  spec_storage = mf_SC1(j,i,k) / cell_area
             !  storativity = spec_storage * thickness

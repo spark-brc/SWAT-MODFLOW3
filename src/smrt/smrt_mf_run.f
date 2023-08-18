@@ -45,7 +45,7 @@
           !print out monthly averages for MODFLOW recharge
           write(30020,*), 'month:',smrt_month_counter,'year:',iyr
           do i=1,NROW
-            write(30020,100) (smrt_RECH_avg_mo(j,i),j=1,NCOL)
+            write(30020,101) (smrt_RECH_avg_mo(j,i),j=1,NCOL)
           enddo
           write(30020,*)
           
@@ -135,7 +135,7 @@
             !MODFLOW recharge
             write(30021,*), 'year:',iyr
             do i=1,NROW
-              write(30021,100) (smrt_RECH_avg_yr(j,i),j=1,NCOL)
+              write(30021,101) (smrt_RECH_avg_yr(j,i),j=1,NCOL)
             enddo
             write(30021,*)
 
