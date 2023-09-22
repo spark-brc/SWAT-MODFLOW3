@@ -63,12 +63,12 @@
 
  
           case (2)  !! irrigation operation
-            irr_sc(ihru) = mgt2iop(nop(j),j) !source of irrigation water
-            irr_no(ihru) = mgt10iop(nop(j),j) 
-            irramt(ihru) = mgt4op(nop(j),j) !depth (mm) of applied water
+            irr_sc(ihru) = mgt2iop(nop(j),j)     !!NUBZ
+            irr_no(ihru) = mgt10iop(nop(j),j)
+            irramt(ihru) = mgt4op(nop(j),j)
             irrsalt(ihru) = mgt5op(nop(j),j)
-            irrefm(ihru) = mgt6op(nop(j),j) !irrigation efficiency
-            irrsq(ihru) = mgt7op(nop(j),j) !surface runoff ratio (0-1)
+            irrefm(ihru) = mgt6op(nop(j),j)
+            irrsq(ihru) = mgt7op(nop(j),j)
 	      irr_flag(ihru) = 1
             
             if (irrefm(ihru) < 1.e-6) irrefm(ihru)=1.0
@@ -78,6 +78,9 @@
             if (irr_sc(ihru) > 2) then    !! reach and res flag ??
               call irrsub
             endif
+            
+            !set irrigation efficiency in irr_eff (used in several subroutines) (rtb)
+            irr_eff(ihru) = irrefm(ihru)
             
             if (imgt ==1) then
               write (143, 1002) subnum(j), hruno(j), iyr, i_mo, 
@@ -328,6 +331,11 @@
       if (nop(j) > nopmx(j)) then
         nop(j) = 1
       end if
+      
+      !make sure that irrigation efficiency does not remain = 0 (will cause infinity when dividing) (rtb)
+      if (irr_eff(j) .eq. 0) then
+        irr_eff(j) = 1.0
+      endif
       
 1000  format (a5,1x,a4,3i6,1x,e10.5,1x,2a15,19f10.2)    
       return
